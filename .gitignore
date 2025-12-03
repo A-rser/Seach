@@ -1,0 +1,15 @@
+# UE 垃圾文件过滤规则
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Build/
+.vscode/
+.vs/
+*.sln
+*.vc.db
+*.opensdf
+*.opendb
+*.suo
+*.xcodeproj
+*.xcworkspace
