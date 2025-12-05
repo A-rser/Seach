@@ -2,6 +2,7 @@
 
 
 #include "Item.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 AItem::AItem()
@@ -17,13 +18,23 @@ void AItem::BeginPlay()
 	Super::BeginPlay();
 
 	UE_LOG(LogTemp,Warning,TEXT("Begin Play Called"));//TextÊÇÎÄ±¾ºê
-	
+
+	UWorld* World = GetWorld();
+
+	if (World)
+	{
+
+	}
+
+	DrawDebugSphere();
 }
 
 // Called every frame
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
 
 }
+
 
