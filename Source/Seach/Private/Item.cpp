@@ -3,13 +3,17 @@
 
 #include "Item.h"
 #include "DrawDebugHelpers.h"
+#include "Seach/Seach.h"
+
+#define THIRTY 30
+
 
 // Sets default values
 AItem::AItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	 
 }
 
 // Called when the game starts or when spawned
@@ -17,16 +21,14 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp,Warning,TEXT("Begin Play Called"));//TextÊÇÎÄ±¾ºê
+
+
 
 	UWorld* World = GetWorld();
-
-	if (World)
-	{
-
-	}
-
-	DrawDebugSphere();
+	FVector Location = GetActorLocation();
+	FVector Vector = GetActorForwardVector();
+	
+	DRAW_VECTOR(Location, Location+Vector*100.f);
 }
 
 // Called every frame
