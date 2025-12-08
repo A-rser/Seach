@@ -20,7 +20,7 @@ AItem::AItem()
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorRotation(FRotattor(0.f, 45.f, 0.f));
+	SetActorRotation(FRotator(0.f, 45.f, 0.f));
 
 	SetActorLocation(FVector(0.f, 0.f, 50.f));
 
