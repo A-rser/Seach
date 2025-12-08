@@ -20,16 +20,24 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	float RunningTime;
 
-	UPROPERTY(EditDefaultsOnly)
+
+	UPROPERTY(EditAnyWhere,BlueprintReadWrite,Category="Sine Parameters")  
+	//BlueprintReadWrite 蓝图中可以更改    Category 在蓝图类默认的分类
 	float Amplitude = 0.25f;
+
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite,Category="Sine Parameters")
 	float TimeConstant = 5.f;
 
+	float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
 
+
+private:
+	UPROPERTY(VisibleAnyWhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))//meta==元说明符的语法
+			//AllowPrivateAccess 当这个值为true，meta 就可以修改Running Time
+	float RunningTime;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 };
-s

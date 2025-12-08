@@ -28,13 +28,19 @@ void AItem::BeginPlay()
 	FVector Location = GetActorLocation();
 	FVector Vector = GetActorForwardVector();
 	
-	DRAW_VECTOR(Location, Location+Vector*100.f);
+
 }
 
 // Called every frame
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	Running += DeltaTime;
+
+	float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
+
+	AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
 	
 
 }
