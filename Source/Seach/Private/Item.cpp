@@ -46,7 +46,9 @@ void AItem::Tick(float DeltaTime)
 	//AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ)); 
 
 	FVector AvgVector = Avg<FVector>(GetActorLocation(), FVector::ZeroVector);
+	DRAW_POINT_SingleFrame(AvgVector);
 
+	
 }
 
 
