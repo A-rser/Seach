@@ -37,9 +37,14 @@ float AItem::TransformedSin(float Value)
 	return Amplitude * FMath::Sin(Value * TimeConstant);
 }
 
+float AItem::TransformedCos(float Value)
+{
+	return Amplitude * FMath::Cos(Value * TimeConstant);
+}
+
 // Called every frame
 void AItem::Tick(float DeltaTime)
-{
+{ 
 	Super::Tick(DeltaTime);
 
 	RunningTime += DeltaTime;

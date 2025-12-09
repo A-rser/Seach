@@ -29,8 +29,12 @@ protected:
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite,Category="Sine Parameters")
 	float TimeConstant = 5.f;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintPure)
 		float TransformedSin(float Value);
+
+
+	UFUNCTION(BlueprintPure)
+		float TransformedCos(float Value);
 
 private:
 	UPROPERTY(VisibleAnyWhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))//meta==元说明符的语法
