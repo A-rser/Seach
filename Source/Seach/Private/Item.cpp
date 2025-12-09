@@ -20,16 +20,8 @@ AItem::AItem()
 // Called when the game starts or when spawned
 void AItem::BeginPlay()
 {
-	Super::BeginPlay();
-	SetActorRotation(FRotator(0.f, 45.f, 0.f));
-
-	SetActorLocation(FVector(0.f, 0.f, 50.f));
-
-	UWorld* World = GetWorld();
-	FVector Location = GetActorLocation();
-	FVector Vector = GetActorForwardVector();
 	
-
+	Super::BeginPlay();
 }
 
 float AItem::TransformedSin(float Value)
@@ -44,15 +36,16 @@ float AItem::TransformedCos(float Value)
 
 // Called every frame
 void AItem::Tick(float DeltaTime)
-{ 
+{  
 	Super::Tick(DeltaTime);
 
 	RunningTime += DeltaTime;
 
 	//float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
 
-	//AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
-	
+	//AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ)); 
+
+	FVector AvgVector = Avg<FVector>(GetActorLocation(), FVector::ZeroVector);
 
 }
 

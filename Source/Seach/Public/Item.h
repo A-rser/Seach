@@ -36,6 +36,10 @@ protected:
 	UFUNCTION(BlueprintPure)
 		float TransformedCos(float Value);
 
+	
+	template<typename T>
+	T Avg(T First, T Second);
+
 private:
 	UPROPERTY(VisibleAnyWhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))//meta==元说明符的语法
 			//AllowPrivateAccess 当这个 值为true，meta 就可以修改Running Time
@@ -44,4 +48,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
+
 };
+
+template<typename T>
+inline T AItem::Avg(T First, T Second)
+{
+	return (First+Second)/2;
+}
