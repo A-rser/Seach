@@ -1,3 +1,4 @@
+#include "Item.h"
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
@@ -31,16 +32,21 @@ void AItem::BeginPlay()
 
 }
 
+float AItem::TransformedSin(float Value)
+{
+	return Amplitude * FMath::Sin(Value * TimeConstant);
+}
+
 // Called every frame
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	Running += DeltaTime;
+	RunningTime += DeltaTime;
 
-	float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
+	//float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
 
-	AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
+	//AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
 	
 
 }

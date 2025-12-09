@@ -29,12 +29,12 @@ protected:
 	UPROPERTY(EditAnyWhere, BlueprintReadWrite,Category="Sine Parameters")
 	float TimeConstant = 5.f;
 
-	float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
-
+	UFUNCTION(BlueprintCallable)
+		float TransformedSin(float Value);
 
 private:
 	UPROPERTY(VisibleAnyWhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))//meta==元说明符的语法
-			//AllowPrivateAccess 当这个值为true，meta 就可以修改Running Time
+			//AllowPrivateAccess 当这个 值为true，meta 就可以修改Running Time
 	float RunningTime;
 public:	
 	// Called every frame
