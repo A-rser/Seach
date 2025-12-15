@@ -14,8 +14,10 @@ AItem::AItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshCommponet")); //创建一个Default root component对象
+	 
+	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshCommponet")); //创建一个Default root component对象  
+	RootComponent = ItemMesh;
+	RunningTime = 0;
 }
 
 // Called when the game starts or when spawned
@@ -40,9 +42,9 @@ void AItem::Tick(float DeltaTime)
 {  
 	Super::Tick(DeltaTime);
 
-	RunningTime += DeltaTime;
+	RunningTime += 1;
 
-
+	SetActorRotation(FRotator(0.f, RunningTime,0.f));
 	
 }
 

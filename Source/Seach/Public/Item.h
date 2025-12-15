@@ -45,8 +45,8 @@ private:
 			//AllowPrivateAccess 当这个 值为true，meta 就可以修改Running Time
 	float RunningTime;
 
-	 UPROPERTY(VisibleAnywhere) //暴露给反射系统与蓝图   //添加这个 将自动参与垃圾回收机制
-	 UStaticMeshComponent* ItemMesh;
+	UPROPERTY(VisibleAnywhere) //暴露给反射系统与蓝图   //添加这个 将自动参与垃圾回收机制
+	UStaticMeshComponent* ItemMesh;
 
 
 public:	
