@@ -3,19 +3,25 @@
 
 #include "Pawns/Bird.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 
 // Sets default values
 ABird::ABird()
 {
  	
 	PrimaryActorTick.bCanEverTick = true;
-	CapSule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
-	CapSule->SetCapsuleHalfHeight(20.f);
-	CapSule->SetCapsuleRadius(15.f);
+	Capsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
+	Capsule->SetCapsuleHalfHeight(20.f);
+	Capsule->SetCapsuleRadius(15.f);
 	
-	SetRootComponent(CapSule);
+	SetRootComponent(Capsule);
 
+	BirdMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("BirdMesh1"));
+	BirdMesh->SetupAttachment(Capsule);
+	//BirdMesh->SetupAttachment(GetRootComponent());
+	//这两个都是设置BirdMesh附加到基组件的
 
+	AutoPossessPlayer = EAutoReceiveInput::Player0; //默认控制
 }
 
 
@@ -26,7 +32,7 @@ void ABird::BeginPlay()
 
 }
 
-
+    
 void ABird::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
