@@ -32,6 +32,10 @@ void ABird::BeginPlay()
 
 }
 
+void ABird::MoveForward(float value)
+{
+
+}
     
 void ABird::Tick(float DeltaTime)
 {
@@ -44,6 +48,7 @@ void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	MoveForward();
 }
 
  
