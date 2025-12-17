@@ -34,7 +34,7 @@ void ABird::BeginPlay()
 
 void ABird::MoveForward(float Value)
 {
-	UE_LOG(LogTemp, Warining, TEXT("ValueL:%f"), Value);
+	UE_LOG(LogTemp, Warning, TEXT("Value:%f"), Value);
 }
     
 void ABird::Tick(float DeltaTime)
