@@ -32,9 +32,9 @@ void ABird::BeginPlay()
 
 }
 
-void ABird::MoveForward(float value)
+void ABird::MoveForward(float Value)
 {
-
+	UE_LOG(LogTemp, Warining, TEXT("ValueL:%f"), Value);
 }
     
 void ABird::Tick(float DeltaTime)
@@ -48,7 +48,7 @@ void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	MoveForward();
+	PlayerInputComponent->BindAxis(FName("MoveForward"),this,&ABird::MoveForward);
 }
 
  

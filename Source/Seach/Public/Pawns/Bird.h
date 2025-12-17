@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "Bird.generated.h"	
+#include "Bird.generated.h"
 
 class UCapsuleComponent;
 class USkeletalMeshComponent;
-void MoveForward(float value);
+void MoveForward(float Value)
 
 
 UCLASS()
