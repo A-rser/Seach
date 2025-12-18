@@ -6,10 +6,11 @@
 #include "GameFramework/Pawn.h"
 #include "Bird.generated.h"
 
+
 class UCapsuleComponent;
 class USkeletalMeshComponent;
-
-
+Class USpringArmComponent;
+Class UCameraComponent;
 
 UCLASS()
 class SEACH_API ABird : public APawn
@@ -36,6 +37,10 @@ private:
 	 UCapsuleComponent* Capsule;
 	UPROPERTY(VisibleAnywhere)
 	 USkeletalMeshComponent* BirdMesh;
+	 UPROPERTY(VisibleAnywhere)
+	 USpringArmComponent* SpringArm;
+	 UPROPERTY(VisibleAnywhere)
+	 UCameraComponent* Camera;
 
 };
   

@@ -4,7 +4,8 @@
 #include "Pawns/Bird.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
-
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
 // Sets default values
 ABird::ABird()
 {
@@ -21,6 +22,8 @@ ABird::ABird()
 	//BirdMesh->SetupAttachment(GetRootComponent());
 	//这两个都是设置BirdMesh附加到基组件的
 
+	SpringArm = CreateDefaultSubbject<SpringArmComponent>(TEXT("SpringArm"));
+
 	AutoPossessPlayer = EAutoReceiveInput::Player0; //默认控制
 }
 
@@ -34,7 +37,8 @@ void ABird::BeginPlay()
 
 void ABird::MoveForward(float Value)
 {
-	UE_LOG(LogTemp, Warining, TEXT("ValueL:%f"), Value);
+	FVector Forward = GetActorForwardVector();
+	AddMovementInput(Forward, Value);
 }
     
 void ABird::Tick(float DeltaTime)
