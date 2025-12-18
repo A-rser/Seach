@@ -34,7 +34,11 @@ void ABird::BeginPlay()
 
 void ABird::MoveForward(float Value)
 {
-	UE_LOG(LogTemp, Warining, TEXT("ValueL:%f"), Value);
+	if ((Controller) && (Value != 0.f))
+	{
+		FVector Forward = GetActorForwardVector();
+		AddMovementInput(Forward, Value);
+	}
 }
     
 void ABird::Tick(float DeltaTime)

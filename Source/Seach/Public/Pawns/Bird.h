@@ -8,7 +8,6 @@
 
 class UCapsuleComponent;
 class USkeletalMeshComponent;
-void MoveForward(float Value)
 
 
 UCLASS()
@@ -29,10 +28,12 @@ public:
 protected:
 
 	virtual void BeginPlay() override;
-
+	void MoveForward(float Value);
+	 
 private:
 	UPROPERTY(VisibleAnywhere)
 	 UCapsuleComponent* Capsule;
+	UPROPERTY(VisibleAnywhere)
 	 USkeletalMeshComponent* BirdMesh;
 
 };
