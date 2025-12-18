@@ -40,7 +40,7 @@ private:
 	 UPROPERTY(VisibleAnywhere)
 	 USpringArmComponent* SpringArm;
 	 UPROPERTY(VisibleAnywhere)
-	 UCameraComponent* Camera;
+	 UCameraComponent* ViewCamera;
 
 };
   
