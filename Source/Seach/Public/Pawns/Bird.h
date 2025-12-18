@@ -10,6 +10,7 @@ class UCapsuleComponent;
 class USkeletalMeshComponent;
 
 
+
 UCLASS()
 class SEACH_API ABird : public APawn
 {
