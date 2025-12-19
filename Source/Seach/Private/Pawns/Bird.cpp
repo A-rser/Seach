@@ -6,6 +6,8 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Camera/CameraComponent.h"
+
 // Sets default values
 ABird::ABird()
 {
@@ -22,7 +24,13 @@ ABird::ABird()
 	//BirdMesh->SetupAttachment(GetRootComponent());
 	//这两个都是设置BirdMesh附加到基组件的
 
-	SpringArm = CreateDefaultSubbject<SpringArmComponent>(TEXT("SpringArm"));
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	SpringArm->SetupAttachment(GetRootComponent());
+	SpringArm->TargetArmLength = 300.f;
+
+	ViewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	ViewCamera->SetupAttachment(SpringArm);
+	 
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0; //默认控制
 }
@@ -37,8 +45,11 @@ void ABird::BeginPlay()
 
 void ABird::MoveForward(float Value)
 {
-	FVector Forward = GetActorForwardVector();
-	AddMovementInput(Forward, Value);
+	if (Controller&&Value!=0.f)
+	{
+		FVector Forward = GetActorForwardVector();
+		AddMovementInput(Forward, Value);
+	}
 }
     
 void ABird::Tick(float DeltaTime)

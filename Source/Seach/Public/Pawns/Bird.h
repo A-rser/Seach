@@ -9,8 +9,8 @@
 
 class UCapsuleComponent;
 class USkeletalMeshComponent;
-Class USpringArmComponent;
-Class UCameraComponent;
+class USpringArmComponent;
+class UCameraComponent;
 
 UCLASS()
 class SEACH_API ABird : public APawn
