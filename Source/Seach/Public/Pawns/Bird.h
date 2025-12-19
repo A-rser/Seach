@@ -7,6 +7,7 @@
 #include "Bird.generated.h"
 
 
+
 class UCapsuleComponent;
 class USkeletalMeshComponent;
 class USpringArmComponent;
@@ -31,6 +32,9 @@ protected:
 
 	virtual void BeginPlay() override;
 	void MoveForward(float Value);
+	void Turn(float Value);
+	void LookUp(float Value);
+
 	 
 private:
 	UPROPERTY(VisibleAnywhere)

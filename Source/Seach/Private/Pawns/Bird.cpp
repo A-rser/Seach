@@ -6,7 +6,6 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
-#include "Camera/CameraComponent.h"
 
 // Sets default values
 ABird::ABird()
@@ -40,7 +39,7 @@ void ABird::BeginPlay()
 {
 	Super::BeginPlay();
 	 
-
+	
 }
 
 void ABird::MoveForward(float Value)
