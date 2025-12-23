@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "SlashCharacter.generated.h"
+class USpringArmComponent;
+class UCameraComponent;
+
 
 UCLASS()
 class SEACH_API ASlashCharacter : public ACharacter
@@ -12,18 +15,20 @@ class SEACH_API ASlashCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	ASlashCharacter();
-
+	virtual void Tick(float DeltaTime) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	void MoveForward(float Value);    
+	void LookUP(float Value);
+	void Turn(float Value);
+	void MoveRight(float Value);
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+private:
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* CameraBoom;
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* ViewCamera;
 };
