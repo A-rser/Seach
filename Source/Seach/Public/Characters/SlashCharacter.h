@@ -7,6 +7,7 @@
 #include "SlashCharacter.generated.h"
 class USpringArmComponent;
 class UCameraComponent;
+class UGroomComponent; 
 
 
 UCLASS()
@@ -31,4 +32,11 @@ private:
 	USpringArmComponent* CameraBoom;
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* ViewCamera;
+
+	UPROPERTY(VisibleAnywhere,Category=Hair)
+	UGroomComponent* Hair;
+
+	UPROPERTY(VisibleAnywhere,Category = Hair)
+	UGroomComponent* Eyebrows;
+
 };
