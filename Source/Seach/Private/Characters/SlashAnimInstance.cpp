@@ -2,4 +2,18 @@
 
 
 #include "Characters/SlashAnimInstance.h"
+#include "Characters/SlashCharacter.h"
 
+void USlashAnimInstance::NativeInitializeAnimation()
+{
+	Super::NativeInitializeAnimation();
+
+	Cast<ASlashCharacter>(TryGetPawnOwner());
+	
+
+}
+
+void USlashAnimInstance::NativeUpdateAnimation(float DeltaTime)
+{
+	Super::NativeUpdateAnimation(DeltaTime);
+}
