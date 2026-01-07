@@ -43,7 +43,6 @@ void ASlashCharacter::BeginPlay()
 void ASlashCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 
@@ -55,6 +54,8 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAxis(FName("Turn"), this, &ASlashCharacter::Turn);
 	PlayerInputComponent->BindAxis(FName("LookUp"), this, &ASlashCharacter::LookUP);
 	PlayerInputComponent->BindAxis(FName("MoveRight"),this, &ASlashCharacter::MoveRight);
+	
+	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ACharacter::Jump);
 }
 
 void ASlashCharacter::MoveForward(float Value)
