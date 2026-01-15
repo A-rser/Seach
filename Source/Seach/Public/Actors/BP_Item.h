@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "BP_Item.generated.h"
-#include "Components/SphereComponent.h"
+
 
 class USphereComponent;
 
