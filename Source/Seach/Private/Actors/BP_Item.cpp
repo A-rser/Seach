@@ -17,6 +17,8 @@ ABP_Item::ABP_Item()
 void ABP_Item::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereOverlap);
 	
 }
 
@@ -27,3 +29,11 @@ void ABP_Item::Tick(float DeltaTime)
 
 }
 
+void AItem::OnSphereOverlap(UPrimitiveComponent OnComponentBeginOverlap, UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	const FString OtherActorName = OtherActor->GetName();
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessge(1, 30.f, FColor::Red, OtherActorName);
+		}
+}
