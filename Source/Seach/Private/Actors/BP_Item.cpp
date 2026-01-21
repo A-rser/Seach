@@ -1,39 +1,51 @@
-// BP_Item.cpp
+	// Fill out your copyright notice in the Description page of Project Settings.
+
 
 #include "Actors/BP_Item.h"
 #include "Components/SphereComponent.h"
-#include "Engine/Engine.h" // 引入 Engine 头文件以使用 GEngine
 
 // Sets default values
-ABP_Item::ABP_Item() // 确保类名是 ABP_Item
+AItem::AItem()
 {
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	Sphere->SetupAttachment(RootComponent);
+	Sphere->SetupAttachment(GetRootComponent());
 }
 
-void ABP_Item::BeginPlay()
+// Called when the game starts or when spawned
+void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	Sphere->OnComponentBeginOverlap.AddDynamic(this, &ABP_Item::OnSphereOverlap);
-	//用Sphere的重叠时，触发事件，绑定委托到Onsphereoverlap
+
+	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereBeginOverlap);
+	Sphere->OnComponentEndOverlap.AddDynamic(this, &AItem::OnSphereEndOverlap);
+	
 }
 
 // Called every frame
-void ABP_Item::Tick(float DeltaTime) //
+void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
 }
 
-void ABP_Item::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AItem::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor) 
+	const FString OtherActorName = OtherActor->GetName();
+	if (GEngine)
 	{
-		const FString OtherActorName = OtherActor->GetName();
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
+		GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
 		}
+}
+
+void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	const FString OtherActorName =FString("Ending Overlap With:") + OtherActor->GetName();
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
 	}
 }
+
+
