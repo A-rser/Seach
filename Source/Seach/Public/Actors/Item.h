@@ -6,12 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "Item.generated.h" 
 
-// ǰ��������÷������UCLASS ������
 class USphereComponent;
 class UStaticMeshComponent;
 
-
-// ���޸��ص㡿������ֻ��Ҫһ�� UCLASS�����Ҽ��� Blueprintable
 UCLASS(Blueprintable)
 class SEACH_API AItem : public AActor
 {
@@ -31,6 +28,10 @@ protected:
 	UFUNCTION()
 	virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
+	UStaticMeshComponent* RootMesh;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -38,8 +39,8 @@ public:
 private:
 	UPROPERTY(VisibleAnywhere)
 	USphereComponent* Sphere;
-
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* RootMesh;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "True"))
+	float RunningTime;
 
 };
