@@ -8,6 +8,7 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UGroomComponent; 
+class AItem;
 
 
 UCLASS()
@@ -26,6 +27,7 @@ protected:
 	void LookUP(float Value);
 	void Turn(float Value);
 	void MoveRight(float Value);
+	void EKeyPressed();
 
 private:
 	UPROPERTY(VisibleAnywhere)
@@ -38,5 +40,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere,Category = Hair)
 	UGroomComponent* Eyebrows;
+
+	UPROPERTY(VisibleInstanceOnly)//只会在细节面板看到
+	AItem* OverlappingItem;
+
+public:
 
 };

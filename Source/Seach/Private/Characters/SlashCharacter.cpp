@@ -55,7 +55,8 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAxis(FName("Turn"), this, &ASlashCharacter::Turn);
 	PlayerInputComponent->BindAxis(FName("LookUp"), this, &ASlashCharacter::LookUP);
 	PlayerInputComponent->BindAxis(FName("MoveRight"),this, &ASlashCharacter::MoveRight);
-	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ACharacter::Jump);
+	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ASlashCharacter::Jump);
+	PlayerInputComponent->BindAction(FName("Equip"), IE_Pressed, this, &ASlashCharacter::EKeyPressed);
 }
 
 void ASlashCharacter::MoveForward(float Value)
@@ -88,4 +89,9 @@ void ASlashCharacter::MoveRight(float Value)
 	const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
 	AddMovementInput(Direction, Value);
+}
+
+void ASlashCharacter::EKeyPressed()
+{
+
 }
