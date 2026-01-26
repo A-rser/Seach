@@ -4,16 +4,17 @@
 #include "Actors/Weapons/Weapon.h"
 #include "Characters/SlashCharacter.h"
 
+void AWeapon::Equip(USceneComponent* InParent, FName InSocketName)
+{
+
+	//将组件附加到Parent的socketName上
+	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
+	RootMesh->AttachToComponent(InParent, TransformRules, InSocketName);
+}
+
 void AWeapon::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	Super::OnSphereBeginOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
-	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
-
-	if (SlashCharacter)
-	{
-		FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
-		RootMesh->AttachToComponent(SlashCharacter->GetMesh(), TransformRules, FName("RightHandSocket"));
-	}
 }
 
 void AWeapon::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
