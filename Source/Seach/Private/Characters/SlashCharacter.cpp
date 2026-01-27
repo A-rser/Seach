@@ -107,26 +107,35 @@ void ASlashCharacter::EKeyPressed()
 
 void ASlashCharacter::Attack()
 {
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (Actionstate == EActionState::EAS_Unoccupied)
+	{
+		PlayAnimMontage();
+		Actionstate = EActionState::EAS_Attacking;
+	}
+}
+
+void ASlashCharacter::PlayAttackMontage()
+{
+	 UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	FName SelectionName = FName();
-	if (AnimInstance&&AttackMontage)
+	if (AnimInstance && AttackMontage)
 	{
 		AnimInstance->Montage_Play(AttackMontage);
-		int32 Selection = FMath::RandRange(0,1);
+		const int32 Selection = FMath::RandRange(0, 1);
 		switch (Selection)
 		{
 		case 0:
 			SelectionName = FName("Attack1");
 			break;
-		
+
 		case 1:
 			SelectionName = FName("Attack2");
-			break;	
+			break;
 
 		default:
-			
+
 			break;
 		}
-		AnimInstance->Montage_JumpToSection(SelectionName,AttackMontage);
+		AnimInstance->Montage_JumpToSection(SelectionName, AttackMontage);
 	}
 }

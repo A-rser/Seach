@@ -22,6 +22,10 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	/*
+	* Callbacks for input
+	*/
+
 	void MoveForward(float Value);    
 	void LookUP(float Value);
 	void Turn(float Value);
@@ -29,6 +33,12 @@ protected:
 	void EKeyPressed();
 	void Attack();
 
+	/*
+	* Play Montage Functions
+	*/
+	void PlayAttackMontage();
+
+	
 private:
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* CameraBoom;
@@ -45,6 +55,7 @@ private:
 	AItem* OverlappingItem;
 
 	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
+	EActionState Actionstate = EActionState::EAS_Unoccupied;
 
 	// Animation Montage
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
