@@ -8,7 +8,7 @@
 #include "GroomComponent.h"
 #include "Actors/Item.h"
 #include "Actors/Weapons/Weapon.h"
-
+#include "Animation/AnimMontage.h"
 
 ASlashCharacter::ASlashCharacter()
 {
@@ -59,6 +59,7 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAxis(FName("MoveRight"),this, &ASlashCharacter::MoveRight);
 	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ASlashCharacter::Jump);
 	PlayerInputComponent->BindAction(FName("Equip"), IE_Pressed, this, &ASlashCharacter::EKeyPressed);
+	PlayerInputComponent->BindAction(FName("Attack"), IE_Pressed, this, &ASlashCharacter::Attack);
 }
 
 void ASlashCharacter::MoveForward(float Value)
@@ -101,5 +102,31 @@ void ASlashCharacter::EKeyPressed()
 		OverlappingWeapon->Equip(GetMesh(), FName("RightHandSocket"));
 		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon; 
 		//改变枚举玩家的状态，玩家持有单手武器
+	}
+}
+
+void ASlashCharacter::Attack()
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	FName SelectionName = FName();
+	if (AnimInstance&&AttackMontage)
+	{
+		AnimInstance->Montage_Play(AttackMontage);
+		int32 Selection = FMath::RandRange(0,1);
+		switch (Selection)
+		{
+		case 0:
+			SelectionName = FName("Attack1");
+			break;
+		
+		case 1:
+			SelectionName = FName("Attack2");
+			break;	
+
+		default:
+			
+			break;
+		}
+		AnimInstance->Montage_JumpToSection(SelectionName,AttackMontage);
 	}
 }

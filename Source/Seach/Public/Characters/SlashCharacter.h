@@ -8,6 +8,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UGroomComponent; 
 class AItem;
+class UAnimMontage;
 
 UCLASS()
 class SEACH_API ASlashCharacter : public ACharacter
@@ -26,6 +27,7 @@ protected:
 	void Turn(float Value);
 	void MoveRight(float Value);
 	void EKeyPressed();
+	void Attack();
 
 private:
 	UPROPERTY(VisibleAnywhere)
@@ -43,6 +45,10 @@ private:
 	AItem* OverlappingItem;
 
 	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
+
+	// Animation Montage
+	UPROPERTY(EditDefaultsOnly, Category = Montages)
+	UAnimMontage* AttackMontage;
 
 public:
 	FORCEINLINE void SetOverlappingItem(AItem* Item) { OverlappingItem = Item; }
