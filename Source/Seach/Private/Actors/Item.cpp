@@ -39,7 +39,7 @@ void AItem::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActo
 	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
 	if (SlashCharacter)
 	{
-		SlashCharacter->SetOverlappingItem(this)
+		SlashCharacter->SetOverlappingItem(this);
 	}
 }
 

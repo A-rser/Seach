@@ -4,11 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
+#include "CharacterTypes.h"
 #include "SlashAnimInstance.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class SEACH_API USlashAnimInstance : public UAnimInstance
 {
@@ -27,4 +25,7 @@ public:
 	float GroundSpeed;
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	bool IsFalling;
+
+	UPROPERTY(BlueprintReadOnly,Category="Movement | Character State")
+	ECharacterState CharacterState;
 };

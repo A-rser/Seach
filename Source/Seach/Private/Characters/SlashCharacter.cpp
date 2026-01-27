@@ -99,5 +99,7 @@ void ASlashCharacter::EKeyPressed()
 	if (OverlappingItem)
 	{
 		OverlappingWeapon->Equip(GetMesh(), FName("RightHandSocket"));
+		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon; 
+		//改变枚举玩家的状态，玩家持有单手武器
 	}
 }

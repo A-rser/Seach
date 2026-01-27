@@ -28,5 +28,6 @@ void USlashAnimInstance::NativeUpdateAnimation(float DeltaTime)
 	{	
 		GroundSpeed = UKismetMathLibrary::VSizeXY(SlashCharacterMovement->Velocity);
 		IsFalling = SlashCharacterMovement->IsFalling();
+		CharacterState = SlashCharacter->GetCharacterState(); //通过回调函数获得角色蓝图中的私有变量
 	}
 }
