@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class SEACH_API AWeapon : public AIte m
+class SEACH_API AWeapon : public AItem
 {
 	GENERATED_BODY()
 

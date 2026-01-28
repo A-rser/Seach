@@ -75,7 +75,7 @@ void ASlashCharacter::MoveForward(float Value)
 		AddMovementInput(Direction,Value);
 	} 
 }
-
+ 
 void ASlashCharacter::LookUP(float Value)
 {
 	AddControllerPitchInput(Value);
