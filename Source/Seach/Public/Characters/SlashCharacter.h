@@ -9,7 +9,7 @@ class UCameraComponent;
 class UGroomComponent; 
 class AItem;
 class UAnimMontage;
-
+class AWeapon;
 UCLASS()
 class SEACH_API ASlashCharacter : public ACharacter
 {
@@ -41,6 +41,10 @@ protected:
 	void AttackEnd();
 	bool CanAttack();
 
+	void PlayEquipMontage(FName SectionName);
+	bool CanDisarm();
+	bool CanArm();
+
 	
 private:
 	UPROPERTY(VisibleAnywhere)
@@ -57,6 +61,9 @@ private:
 	UPROPERTY(VisibleInstanceOnly)//只会在细节面板看到
 	AItem* OverlappingItem;
 
+	UPROPERTY(VisibleAnywhere, Category = "Weapon")
+	AWeapon* EquippedWeapon;
+
 	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
 
 	UPROPERTY(BlueprintReadWrite,meta=(AllowPrivateAccess="true")) //允许在蓝图中读写，AllowPrivateAccess允许私有访问
@@ -65,6 +72,9 @@ private:
 	// Animation Montage
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
 	UAnimMontage* AttackMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = Montages)
+	UAnimMontage* EquipMontage;
 
 public:
 	FORCEINLINE void SetOverlappingItem(AItem* Item) { OverlappingItem = Item; }
