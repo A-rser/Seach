@@ -9,6 +9,12 @@
 class USphereComponent;
 class UStaticMeshComponent;
 
+enum  class EItemState : uint8
+{
+	EIS_Hovering,
+	EIS_Equipped
+};
+
 UCLASS(Blueprintable)
 class SEACH_API AItem : public AActor
 {
@@ -31,6 +37,8 @@ protected:
 
 	UPROPERTY(VisibleAnywhere,BlueprintReadOnly)
 	UStaticMeshComponent* RootMesh;
+	
+	EItemState ItemState = EItemState::EIS_Hovering;
 
 public:
 	// Called every frame
@@ -41,6 +49,6 @@ private:
 	USphereComponent* Sphere;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "True"))
-	float RunningTime;
+	float RunningTime;	
 
 };

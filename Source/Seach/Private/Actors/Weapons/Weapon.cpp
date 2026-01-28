@@ -10,6 +10,7 @@ void AWeapon::Equip(USceneComponent* InParent, FName InSocketName)
 	//将组件附加到Parent的socketName上
 	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
 	RootMesh->AttachToComponent(InParent, TransformRules, InSocketName);
+	ItemState = EItemState::EIS_Equipped;
 }
 
 void AWeapon::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

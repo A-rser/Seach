@@ -37,6 +37,9 @@ protected:
 	* Play Montage Functions
 	*/
 	void PlayAttackMontage();
+	UFUNCTION(BlueprintCallable)//BlueprintCallable 蓝图可调用
+	void AttackEnd();
+	bool CanAttack();
 
 	
 private:
@@ -55,6 +58,8 @@ private:
 	AItem* OverlappingItem;
 
 	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
+
+	UPROPERTY(BlueprintReadWrite,meta=(AllowPrivateAccess="true")) //允许在蓝图中读写，AllowPrivateAccess允许私有访问
 	EActionState Actionstate = EActionState::EAS_Unoccupied;
 
 	// Animation Montage

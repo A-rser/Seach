@@ -16,8 +16,6 @@ void USlashAnimInstance::NativeInitializeAnimation()
 	{
 		SlashCharacterMovement = SlashCharacter->GetCharacterMovement();
 	}
-	
-
 }
 
 void USlashAnimInstance::NativeUpdateAnimation(float DeltaTime)

@@ -64,6 +64,8 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 void ASlashCharacter::MoveForward(float Value)
 {
+	if (Actionstate != EActionState::EAS_Attacking)return;
+
 	if (Controller && Value != 0)
 	{
 		// 找到向前的是哪个方向
@@ -86,6 +88,8 @@ void ASlashCharacter::Turn(float Value)
 
 void ASlashCharacter::MoveRight(float Value)
 {
+	if (Actionstate != EActionState::EAS_Attacking)return;
+
 	//find out which way is right
 	const FRotator ControlRotation = GetControlRotation();
 	const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
@@ -107,9 +111,9 @@ void ASlashCharacter::EKeyPressed()
 
 void ASlashCharacter::Attack()
 {
-	if (Actionstate == EActionState::EAS_Unoccupied)
+	if (CanAttack())
 	{
-		PlayAnimMontage();
+		PlayAnimMontage(AttackMontage);
 		Actionstate = EActionState::EAS_Attacking;
 	}
 }
@@ -138,4 +142,16 @@ void ASlashCharacter::PlayAttackMontage()
 		}
 		AnimInstance->Montage_JumpToSection(SelectionName, AttackMontage);
 	}
+}
+
+void ASlashCharacter::AttackEnd()
+{
+	Actionstate = EActionState::EAS_Unoccupied;
+
+}
+
+bool ASlashCharacter::CanAttack()
+{
+	return Actionstate == EActionState::EAS_Unoccupied &&
+		CharacterState != ECharacterState::ECS_Unequipped;
 }
