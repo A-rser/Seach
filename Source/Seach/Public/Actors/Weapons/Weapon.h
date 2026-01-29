@@ -5,15 +5,19 @@
 #include "CoreMinimal.h"
 #include "Actors/Item.h"
 #include "MetasoundSource.h"
+
 #include "Weapon.generated.h"
 
 class USoundBaase;
+class UBoxCollision;
 UCLASS()
 class SEACH_API AWeapon : public AItem
 {
 	GENERATED_BODY()
 
 public:
+	AWeapon();
+
 	void Equip(USceneComponent* InParent, FName InSocketName);
 
 	void AttachMeshToSocket(USceneComponent* InParent, const FName& InSocketName);
@@ -26,5 +30,8 @@ private:
 	
 	UPROPERTY(EditAnywhere, Category = "Weapon Properties")
 	USoundBase* EquipSound;
+
+	UPROPERTY(VisibleAnywhere, Category = "Weapon Properties")
+	UBoxCollision* WeaponBox;
 };
  
