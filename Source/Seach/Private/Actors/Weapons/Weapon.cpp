@@ -21,7 +21,7 @@ void AWeapon::Equip(USceneComponent* InParent, FName InSocketName)
 	}
 	if (Sphere)
 	{
-		Sphere->SetCollisionEnabled(ECollisionEnabled::)
+		Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 }
 
