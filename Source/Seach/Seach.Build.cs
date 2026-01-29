@@ -8,7 +8,7 @@ public class Seach : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        PublicDependencyModuleNames.AddRange(new string[] {    "Core","CoreUObject","Engine","InputCore","Niagara", "HairStrandsCore"});
+        PublicDependencyModuleNames.AddRange(new string[] {    "Core","CoreUObject","Engine","InputCore","Niagara", "HairStrandsCore", "MetasoundEngine" });
 
         PrivateDependencyModuleNames.AddRange(new string[] {  });
 

@@ -64,7 +64,7 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 void ASlashCharacter::MoveForward(float Value)
 {
-	if (Actionstate != EActionState::EAS_Attacking)return;
+	if (Actionstate != EActionState::EAS_Unoccupied) return;
 
 	if (Controller && Value != 0)
 	{
@@ -88,7 +88,7 @@ void ASlashCharacter::Turn(float Value)
 
 void ASlashCharacter::MoveRight(float Value)
 {
-	if (Actionstate != EActionState::EAS_Attacking)return;
+	if (Actionstate == EActionState::EAS_Attacking) return;
 
 	//find out which way is right
 	const FRotator ControlRotation = GetControlRotation();
@@ -114,8 +114,9 @@ void ASlashCharacter::EKeyPressed()
 		{
 			PlayEquipMontage(FName("Unequip"));
 			CharacterState = ECharacterState::ECS_Unequipped;
+			Actionstate = EActionState::EAS_EquippingWeapon;
 		}
-		if (CanArm())
+		else if (CanArm())
 		{
 			PlayEquipMontage(FName("Equip"));
 			CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
@@ -127,7 +128,7 @@ void ASlashCharacter::Attack()
 {
 	if (CanAttack())
 	{
-		PlayAnimMontage(AttackMontage);
+		PlayAttackMontage();
 		Actionstate = EActionState::EAS_Attacking;
 	}
 }
@@ -164,7 +165,7 @@ void ASlashCharacter::PlayEquipMontage(FName SectionName)
 	if (EquipMontage && AnimInstance)
 	{
 		AnimInstance->Montage_Play(EquipMontage);
-		AnimInstance->Montage_JumpToSection(SectionName, AttackMontage);
+		AnimInstance->Montage_JumpToSection(SectionName, EquipMontage);
 	}
 }
 
@@ -194,4 +195,27 @@ bool ASlashCharacter::CanArm()
 	return Actionstate == EActionState::EAS_Unoccupied
 		&& CharacterState == ECharacterState::ECS_Unequipped
 		&& EquippedWeapon;
+}
+
+void ASlashCharacter::Disarm()
+{
+	if (EquippedWeapon)
+	{
+		EquippedWeapon->AttachMeshToSocket(GetMesh(), FName("SpineSocket"));
+		CharacterState = ECharacterState::ECS_Unequipped;
+	}
+}
+
+void ASlashCharacter::Arm()
+ {
+	if (EquippedWeapon)
+	{
+		EquippedWeapon->AttachMeshToSocket(GetMesh(), FName("RightHandSocket"));
+		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
+	}
+}
+
+void ASlashCharacter::FinishedEquipping()
+{
+	Actionstate = EActionState::EAS_Unoccupied;
 }
