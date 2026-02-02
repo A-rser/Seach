@@ -5,11 +5,10 @@
 #include "CoreMinimal.h"
 #include "Actors/Item.h"
 #include "MetasoundSource.h"
-
 #include "Weapon.generated.h"
 
 class USoundBaase;
-class UBoxCollision;
+class UBoxComponent;
 UCLASS()
 class SEACH_API AWeapon : public AItem
 {
@@ -26,12 +25,17 @@ protected:
 	virtual void OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)override;
 	virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)override;
 
+	UFUNCTION()
+	void OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+
+
 private:
 	
 	UPROPERTY(EditAnywhere, Category = "Weapon Properties")
 	USoundBase* EquipSound;
 
 	UPROPERTY(VisibleAnywhere, Category = "Weapon Properties")
-	UBoxCollision* WeaponBox;
+	UBoxComponent* WeaponBox;
 };
  
