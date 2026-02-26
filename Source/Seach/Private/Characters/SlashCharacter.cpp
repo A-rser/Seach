@@ -9,7 +9,7 @@
 #include "Actors/Item.h"
 #include "Actors/Weapons/Weapon.h"
 #include "Animation/AnimMontage.h"
-
+#include "Components/BoxComponent.h"
 ASlashCharacter::ASlashCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -159,7 +159,7 @@ void ASlashCharacter::PlayAttackMontage()
 	}
 }
 
-void ASlashCharacter::PlayEquipMontage(FName SectionName)
+void ASlashCharacter::PlayEquipMontage(const FName& SectionName)
 {
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	if (EquipMontage && AnimInstance)
@@ -219,3 +219,12 @@ void ASlashCharacter::FinishedEquipping()
 {
 	Actionstate = EActionState::EAS_Unoccupied;
 }
+
+void ASlashCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type CollisionEnabled)
+{
+	if (EquippedWeapon&& EquippedWeapon->GetWeaponBox())
+	{
+		EquippedWeapon->GetWeaponBox()->SetCollisionEnabled(CollisionEnabled);
+	}
+}
+

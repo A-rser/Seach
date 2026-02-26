@@ -4,12 +4,14 @@
 #include "GameFramework/Character.h"
 #include "CharacterTypes.h"
 #include "SlashCharacter.generated.h"
+
 class USpringArmComponent;
 class UCameraComponent;
 class UGroomComponent; 
 class AItem;
 class UAnimMontage;
 class AWeapon;
+
 UCLASS()
 class SEACH_API ASlashCharacter : public ACharacter
 {
@@ -41,7 +43,7 @@ protected:
 	void AttackEnd();
 	bool CanAttack();
 
-	void PlayEquipMontage(FName SectionName);
+	void PlayEquipMontage(const FName& SectionName);
 	bool CanDisarm();
 	bool CanArm();
 
@@ -53,6 +55,9 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void FinishedEquipping();
+
+	UFUNCTION(BlueprintCallable)
+	void SetWeaponCollisionEnabled(ECollisionEnabled::Type CollisionEnabled);
 
 	
 private:
